@@ -1,9 +1,11 @@
 from django.test import TestCase
+from . import views
 
 
-class SmokeTest(TestCase):
-    """тест на токсичность"""
+class HomePageTest(TestCase):
+    """тест домашней страницы"""
 
-    def test_bad_maths(self):
-        """Тест направлен на математические расчеты"""
-        self.assertEqual(1 + 1, 3)
+    def test_uses_home_template(self):
+        """Тест: используется домашний шаблон"""
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'home.html')
